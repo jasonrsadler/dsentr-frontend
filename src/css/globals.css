@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 100% 100%;      /* Light background */
+    --foreground: 222.2 47.4% 11.2%;  /* Dark text */
+    --primary: 217 91% 60%;           /* Blue */
+    --secondary: 330 81% 60%;         /* Pink */
+    --muted: 210 20% 96%;             /* Light gray */
+    --border: 210 15% 85%;
+    --card: 0 0% 100%;
+    --input: 0 0% 98%;
+    --accent: 160 84% 39%;            /* Green */
+    --destructive: 0 84% 60%;         /* Red */
+    --ring: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 240 6% 5%;         /* Near black */
+    --foreground: 210 40% 98%;       /* Light text */
+    --primary: 217 91% 60%;
+    --secondary: 330 81% 60%;
+    --muted: 240 4% 15%;
+    --border: 240 4% 25%;
+    --card: 240 5% 10%;
+    --input: 240 5% 12%;
+    --accent: 160 84% 39%;
+    --destructive: 0 84% 60%;
+    --ring: 217 91% 60%;
+  }
+
+  html {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  body {
+    @apply font-sans;
+  }
+
+  a {
+    @apply text-primary hover:underline;
+  }
+
+  button {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-blue-600;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-pink-600;
+  }
+
+  .card {
+    @apply bg-muted text-foreground p-6 rounded-lg shadow;
+  }
+
+  .input {
+    @apply bg-input border border-muted text-foreground px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+}
