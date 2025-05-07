@@ -1,71 +1,54 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 255 100% 100%;      /* Light background */
-    --foreground: 222.2 47.4% 11.2%;  /* Dark text */
-    --primary: 217 91% 60%;           /* Blue */
-    --secondary: 330 81% 60%;         /* Pink */
-    --muted: 210 20% 96%;             /* Light gray */
-    --border: 210 15% 85%;
-    --card: 0 0% 100%;
-    --input: 0 0% 98%;
-    --accent: 160 84% 39%;            /* Green */
-    --destructive: 0 84% 60%;         /* Red */
-    --ring: 217 91% 60%;
-  }
-
-  .dark {
-    --background: 240 6% 5%;         /* Near black */
-    --foreground: 210 40% 98%;       /* Light text */
-    --primary: 217 91% 60%;
-    --secondary: 330 81% 60%;
-    --muted: 240 4% 15%;
-    --border: 240 4% 25%;
-    --card: 240 5% 10%;
-    --input: 240 5% 12%;
-    --accent: 160 84% 39%;
-    --destructive: 0 84% 60%;
-    --ring: 217 91% 60%;
-  }
-
-  html {
-    @apply bg-background text-foreground antialiased;
-  }
-
-  body {
-    @apply font-sans;
-  }
-
-  a {
-    @apply text-primary hover:underline;
-  }
-
-  button {
-    @apply transition-colors duration-200;
-  }
+/* Light mode (default) */
+body {
+  @apply bg-white text-gray-900 transition-colors duration-300;
 }
 
-@layer components {
-  .btn {
-    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
-  }
+/* Dark mode */
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
 
-  .btn-primary {
-    @apply bg-primary text-white hover:bg-blue-600;
-  }
+/* Example link styling */
+a {
+  @apply text-blue-600 underline;
+}
 
-  .btn-secondary {
-    @apply bg-secondary text-white hover:bg-pink-600;
-  }
+.dark a {
+  @apply text-blue-400;
+}
 
-  .card {
-    @apply bg-muted text-foreground p-6 rounded-lg shadow;
-  }
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold text-gray-800;
+}
 
-  .input {
-    @apply bg-input border border-muted text-foreground px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary;
-  }
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  @apply text-gray-100;
+}
+
+/* Optional: some utility classes for containers or cards */
+.container {
+  @apply max-w-4xl mx-auto px-4 py-6;
+}
+
+.card {
+  @apply rounded-lg shadow-md bg-white text-gray-900 p-6;
+}
+
+.dark .card {
+  @apply bg-gray-800 text-gray-100;
+}
+
+.btn {
+  @apply px-4 py-2 rounded font-medium transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-900 hover:bg-gray-300;
+}
+
+.dark .btn-secondary {
+  @apply bg-gray-700 text-gray-100 hover:bg-gray-600;
 }
