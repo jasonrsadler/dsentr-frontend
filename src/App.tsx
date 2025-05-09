@@ -7,6 +7,7 @@ import About from '@/About'
 import HowItWorks from '@/HowItWorks'
 import NotFound from '@/components/NotFound'
 import { DsentrLogo } from '@/components/DsentrLogo'
+import GetStarted from '@/GetStarted'
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/get-started" element={<GetStarted />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
