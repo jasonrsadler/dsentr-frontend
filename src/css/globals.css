@@ -52,3 +52,13 @@ h1, h2, h3, h4, h5, h6 {
 .dark .btn-secondary {
   @apply bg-gray-700 text-gray-100 hover:bg-gray-600;
 }
+
+@keyframes colorShift {
+  0%   { filter: hue-rotate(0deg) brightness(1); }
+  50%  { filter: hue-rotate(20deg) brightness(1.2); }
+  100% { filter: hue-rotate(0deg) brightness(1); }
+}
+
+.modular-animation-wrapper {
+  animation: colorShift 3s ease-in-out infinite;
+}

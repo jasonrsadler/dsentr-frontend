@@ -71,7 +71,7 @@ export default function HowItWorks() {
             <h2 className="text-2xl font-semibold mb-2">Execution Engine</h2>
             <p className="text-zinc-700 dark:text-zinc-300">
               Whether triggered manually, on schedule, or by external events,
-              our engine runs workflows step-by-step or in parallel — managing
+              our engine runs workflows step-by-step or in parallel - managing
               state, errors, and dependencies automatically.
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function HowItWorks() {
             <h2 className="text-2xl font-semibold mb-2">Web UI</h2>
             <p className="text-zinc-700 dark:text-zinc-300">
               Our clean interface makes it easy to build, manage, and monitor
-              workflows. From configuring modules to inspecting run history —
+              workflows. From configuring modules to inspecting run history -
               you stay in control with zero code.
             </p>
           </div>
@@ -106,10 +106,6 @@ export default function HowItWorks() {
           </Link>
         </div>
       </main>
-
-      <footer className="text-center py-6 text-sm text-zinc-500 dark:text-zinc-400 border-t border-zinc-200 dark:border-zinc-700">
-        &copy; {new Date().getFullYear()} Dsentr. All rights reserved.
-      </footer>
     </div>
   )
 }
