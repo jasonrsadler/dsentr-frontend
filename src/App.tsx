@@ -8,6 +8,10 @@ import HowItWorks from '@/HowItWorks'
 import NotFound from '@/components/NotFound'
 import { DsentrLogo } from '@/components/DsentrLogo'
 import GetStarted from '@/GetStarted'
+import Signup from '@/Signup'
+import CheckEmail from '@/CheckEmail'
+import VerifyEmail from '@/VerifyEmail'
+import Login from './Login'
 
 export default function App() {
   return (
@@ -34,7 +38,11 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/get-started" element={<GetStarted />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/check-email" element={<CheckEmail />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
       <footer className="text-center py-6 text-sm text-zinc-500 dark:text-zinc-400 border-t border-zinc-200 dark:border-zinc-700">
