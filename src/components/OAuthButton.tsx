@@ -10,7 +10,7 @@ export function OAuthButton({ provider, onClick, label }: OAuthButtonProps) {
   const defaultLabels: Record<OAuthProvider, string> = {
     google: 'Continue with Google',
     github: 'Continue with GitHub',
-    apple: 'Continue with Apple',
+    apple: 'Continue with Apple'
   }
 
   return (

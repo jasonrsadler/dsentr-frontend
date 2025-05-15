@@ -10,6 +10,7 @@ export async function signupUser(formData: {
   tax_id?: string
   settings?: Record<string, any>
 }): Promise<{ success: boolean; message: string }> {
+  formData.email = formData.email.toLocaleLowerCase()
   try {
     const res = await fetch(`${API_BASE_URL}/api/auth/signup`, {
       method: 'POST',
@@ -29,29 +30,28 @@ export async function signupUser(formData: {
     }
   } catch (error) {
     console.error('Signup error:', error)
-    throw new Error(
-      `An error occurred while signing up: ${error}`
-    )
+    throw new Error(`An error occurred while signing up: ${error}`)
   }
 }
 
 export async function loginWithEmail({
   email,
   password,
-  remember,
+  remember
 }: {
   email: string
   password: string
   remember?: boolean
 }) {
   try {
+    email = email.toLocaleLowerCase()
     const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email, password, remember }),
-      credentials: 'include',
+      credentials: 'include'
     })
 
     const data = await res.json()
@@ -59,7 +59,7 @@ export async function loginWithEmail({
     if (!res.ok || !data.success) {
       return {
         success: false,
-        message: data?.message || 'Login failed',
+        message: data?.message || 'Login failed'
       }
     }
 
@@ -67,8 +67,7 @@ export async function loginWithEmail({
   } catch (err: any) {
     return {
       success: false,
-      message:
-        err instanceof Error ? err.message : 'Unexpected error occurred',
+      message: err instanceof Error ? err.message : 'Unexpected error occurred'
     }
   }
 }
@@ -82,4 +81,3 @@ export function loginWithOAuth(provider: 'google' | 'github' | 'apple') {
 
   window.location.href = url
 }
-

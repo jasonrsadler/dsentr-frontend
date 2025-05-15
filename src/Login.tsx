@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '@/stores/auth'
 import { loginWithEmail, loginWithOAuth } from '@/lib'
 import { OAuthButton } from './components/OAuthButton'
 
@@ -10,18 +11,31 @@ export default function Login() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
+  const { user, isLoading, login } = useAuth()
+
   const isAppleSupported = /Mac|iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+  // ✅ Redirect if already logged in (once auth check finishes)
+  useEffect(() => {
+    if (!isLoading && user) {
+      navigate('/dashboard', { replace: true })
+    }
+  }, [user, isLoading, navigate])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     const res = await loginWithEmail({ email, password, remember })
-    if (res.success) {
+    if (res.success && res.data?.user) {
+        console.log(res.data)
+      login(res.data.user)
       navigate('/dashboard')
     } else {
       setError(res.message || 'Login failed')
     }
   }
+
+  if (isLoading || user) return null // Prevent flash of login form
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-900 px-4">
@@ -37,11 +51,15 @@ export default function Login() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
         </svg>
 
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Login to Dsentr</h1>
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+          Login to Dsentr
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           <div>
-            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Email</label>
+            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+              Email
+            </label>
             <input
               type="email"
               className="w-full mt-1 px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
@@ -51,7 +69,9 @@ export default function Login() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Password</label>
+            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+              Password
+            </label>
             <input
               type="password"
               className="w-full mt-1 px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
@@ -71,7 +91,10 @@ export default function Login() {
               />
               Remember me
             </label>
-            <a href="/forgot-password" className="text-sm text-indigo-500 hover:underline">
+            <a
+              href="/forgot-password"
+              className="text-sm text-indigo-500 hover:underline"
+            >
               Forgot password?
             </a>
           </div>
@@ -88,13 +111,24 @@ export default function Login() {
           </button>
         </form>
 
-        <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-6">Or continue with</div>
+        <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-6">
+          Or continue with
+        </div>
         <div className="flex flex-col gap-3">
-          <OAuthButton provider="google" onClick={() => loginWithOAuth('google')} />
-            <OAuthButton provider="github" onClick={() => loginWithOAuth('github')} />
-            {isAppleSupported && (
-            <OAuthButton provider="apple" onClick={() => loginWithOAuth('apple')} />
-            )}
+          <OAuthButton
+            provider="google"
+            onClick={() => loginWithOAuth('google')}
+          />
+          <OAuthButton
+            provider="github"
+            onClick={() => loginWithOAuth('github')}
+          />
+          {isAppleSupported && (
+            <OAuthButton
+              provider="apple"
+              onClick={() => loginWithOAuth('apple')}
+            />
+          )}
         </div>
       </div>
     </div>

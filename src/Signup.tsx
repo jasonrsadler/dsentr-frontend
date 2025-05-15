@@ -5,7 +5,6 @@ import ClockIcon from '@/assets/svg/ClockIcon'
 import ShieldIcon from '@/assets/svg/ShieldIcon'
 import { WorkflowIllustration } from '@/assets/svg/WorkflowIllustration'
 import { signupUser } from '@/lib'
-import { set } from 'react-hook-form'
 
 function validateName(name: string) {
   return /^[a-zA-Z]{1,50}$/.test(name)
@@ -60,7 +59,6 @@ export default function SignupPage() {
     e.preventDefault()
     const validationErrors: string[] = []
     const newFieldErrors: { [key: string]: boolean } = {}
-
     if (!validateName(form.first_name)) {
       validationErrors.push('Valid First Name is required (letters only).')
       newFieldErrors.first_name = true
@@ -103,20 +101,20 @@ export default function SignupPage() {
     setFieldErrors({})
     setLoading(true)
     try {
-        const result = await signupUser({ ...form })
-        if (result.success) {
-            navigate('/check-email')
-        } else {
-            setMessage(result.message)
-            setServerError(true)
-        }
-        } catch (err: any) {
-            setMessage(err.message)
-            setServerError(true)
-        } finally {
-            setLoading(false)
-        }
+      const result = await signupUser({ ...form })
+      if (result.success) {
+        navigate('/check-email')
+      } else {
+        setMessage(result.message)
+        setServerError(true)
+      }
+    } catch (err: any) {
+      setMessage(err.message)
+      setServerError(true)
+    } finally {
+      setLoading(false)
     }
+  }
 
   const passwordStrength = evaluatePasswordStrength(form.password)
 
@@ -208,33 +206,30 @@ export default function SignupPage() {
               </div>
 
               <button
-  type="submit"
-  disabled={loading}
-  className={`w-full px-4 py-2 rounded font-semibold transition ${
-    loading
-      ? 'bg-indigo-400 cursor-not-allowed'
-      : 'bg-indigo-600 hover:bg-indigo-500'
-  } text-white`}
->
-  {loading ? 'Signing up…' : 'Sign Up'}
-</button>
+                type="submit"
+                disabled={loading}
+                className={`w-full px-4 py-2 rounded font-semibold transition ${
+                  loading
+                    ? 'bg-indigo-400 cursor-not-allowed'
+                    : 'bg-indigo-600 hover:bg-indigo-500'
+                } text-white`}
+              >
+                {loading ? 'Signing up…' : 'Sign Up'}
+              </button>
 
-
-              {message && (
-                serverError ? (
+              {message &&
+                (serverError ? (
                   <p className="mt-2 text-center text-red-600 dark:text-red-400">
                     {message}
                   </p>
-                 ) : (
+                ) : (
                   <p className="mt-2 text-center text-green-600 dark:text-green-400">
                     {message}
                   </p>
-                 )
-              )}
+                ))}
 
               <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center mt-4">
-                No credit card required. Start for free, cancel
-                anytime.
+                No credit card required. Start for free, cancel anytime.
               </p>
             </form>
 

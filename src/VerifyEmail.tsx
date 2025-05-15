@@ -11,7 +11,9 @@ export default function VerifyEmail() {
   const token = query.get('token')
   const navigate = useNavigate()
 
-  const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying')
+  const [status, setStatus] = useState<'verifying' | 'success' | 'error'>(
+    'verifying'
+  )
   const [message, setMessage] = useState<string>('Verifying your email...')
 
   const hasVerified = useRef(false)
@@ -33,7 +35,7 @@ export default function VerifyEmail() {
         }
       } catch (err: any) {
         setStatus('error')
-        setMessage('Something went wrong during verification.')
+        setMessage(`Something went wrong during verification. ${err.message}`)
       }
     }
 
@@ -49,8 +51,8 @@ export default function VerifyEmail() {
             status === 'success'
               ? 'text-green-500'
               : status === 'error'
-              ? 'text-red-500'
-              : 'text-indigo-500'
+                ? 'text-red-500'
+                : 'text-indigo-500'
           }`}
           fill="none"
           viewBox="0 0 24 24"
@@ -73,8 +75,8 @@ export default function VerifyEmail() {
           {status === 'success'
             ? 'Email Verified'
             : status === 'error'
-            ? 'Verification Failed'
-            : 'Verifying...'}
+              ? 'Verification Failed'
+              : 'Verifying...'}
         </h1>
         <p className="text-zinc-600 dark:text-zinc-400 text-sm">{message}</p>
       </div>

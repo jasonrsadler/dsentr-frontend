@@ -4,6 +4,7 @@ import { configDefaults } from 'vitest/config'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import fs from 'fs'
 
 // Emulate __dirname
 const __filename = fileURLToPath(import.meta.url)
@@ -45,6 +46,12 @@ export default defineConfig({
         statements: 80,
         perFile: true
       }
+    }
+  },
+  server: {
+    https: {
+      key: fs.readFileSync(path.join(__dirname, '../../mkcert', 'localhost-key.pem')),
+      cert: fs.readFileSync(path.join(__dirname, '../../mkcert', 'localhost.pem'))
     }
   }
 })
