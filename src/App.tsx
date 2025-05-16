@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/stores/auth'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { NavLinks } from '@/components/NavLinks'
@@ -16,24 +16,20 @@ import VerifyEmail from '@/VerifyEmail'
 import Login from '@/Login'
 import Dashboard from '@/Dashboard'
 import ProtectedRoute from '@/components/ProtectedRoute'
+import LogoutHandler from '@/Logout'
+import ForgotPassword from '@/ForgotPassword'
+import { NavigateButton } from './components/UI/Buttons/NavigateButton'
 
 export default function App() {
-  const { user, isLoading, checkAuth, logout } = useAuth()
+  const { user, isLoading, checkAuth } = useAuth()
   const hasCheckedAuth = useRef(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (hasCheckedAuth.current) return
     hasCheckedAuth.current = true
     checkAuth()
   }, [checkAuth])
-
-  const handleLogout = useCallback(async () => {
-    await fetch('/api/auth/logout', {
-      method: 'POST',
-      credentials: 'include',
-    })
-    logout()
-  }, [logout])
 
   if (isLoading) {
     return (
@@ -54,16 +50,20 @@ export default function App() {
         </div>
 
         {user ? (
-          <div className="flex gap-4 items-center">
-            <span className="text-sm text-zinc-600 dark:text-zinc-300">{user.name}</span>
-            <button
-              onClick={handleLogout}
-              className="text-sm font-medium text-red-600 hover:underline dark:text-red-400"
-            >
-              Log out
-            </button>
-            <ThemeToggle />
-          </div>
+          <div className="flex items-center gap-3">
+  <span className="text-sm text-zinc-600 dark:text-zinc-300 leading-none">
+    {user.first_name} {user.last_name}
+  </span>
+
+  <NavigateButton
+    to="/logout"
+    className="px-3 py-2 text-sm leading-none h-9"
+  >
+    Log out
+  </NavigateButton>
+
+  <ThemeToggle />
+</div>
         ) : (
           <div className="hidden md:flex gap-4 items-center">
             <NavLinks />
@@ -85,6 +85,8 @@ export default function App() {
         <Route path="/check-email" element={<CheckEmail />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<LogoutHandler />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route
           path="/dashboard"
           element={

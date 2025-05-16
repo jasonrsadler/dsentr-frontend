@@ -1,3 +1,4 @@
+import { useAuth } from '@/stores/auth'
 import { API_BASE_URL } from './config'
 
 export async function signupUser(formData: {
@@ -43,6 +44,8 @@ export async function loginWithEmail({
   password: string
   remember?: boolean
 }) {
+  const { login } = useAuth.getState() // ✅ access Zustand store outside React
+
   try {
     email = email.toLocaleLowerCase()
     const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
@@ -61,6 +64,11 @@ export async function loginWithEmail({
         success: false,
         message: data?.message || 'Login failed'
       }
+    }
+    console.log('Login response:', data)
+
+    if (data.user) {
+      login(data.user) // ✅ immediately update Zustand state
     }
 
     return { success: true, data }

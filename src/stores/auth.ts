@@ -3,7 +3,7 @@ import { create } from 'zustand'
 
 type User = {
   first_name: string
-  lastName: string
+  last_name: string
   email: string
     id: string
     role: string
@@ -41,8 +41,8 @@ export const useAuth = create<AuthState>((set) => ({
         credentials: 'include',
       })
       if (!res.ok) throw new Error('Not authenticated')
-      const user = await res.json()
-      set({ user, isLoading: false })
+      const data = await res.json()
+      set({user: data?.user, isLoading: false })
     } catch {
       set({ user: null, isLoading: false })
     }

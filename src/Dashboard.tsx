@@ -2,7 +2,10 @@ import { useAuth } from '@/stores/auth'
 
 const Dashboard = () => {
   const { user } = useAuth()
-    console.log(user)
+  if (user) {
+    console.log('User in Dashboard:', user)
+    console.log('User in Dashboard:', user.first_name)
+}
   return (
     <div className="p-4 text-white">
       <h1 className="text-xl font-semibold">Dashboard</h1>
