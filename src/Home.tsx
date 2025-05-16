@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import ModularAnimation from '@/components/ModularAnimation'
 import { usePageMeta } from '@/hooks/usePageMeta'
 import { MetaTags } from '@/components/MetaTags'
+import { NavigateButton } from './components/UI/Buttons/NavigateButton'
 
 export default function Home() {
   usePageMeta({
@@ -33,11 +34,7 @@ export default function Home() {
             trigger workflows, and build dynamic logic without writing a single
             line of code.
           </p>
-          <Link to="/get-started">
-            <button className="mt-8 px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 transition">
-              Get Started
-            </button>
-          </Link>
+          <NavigateButton to="/get-started">Get Started</NavigateButton>
         </main>
 
         <section className="py-16 px-6 bg-zinc-50 dark:bg-zinc-800">

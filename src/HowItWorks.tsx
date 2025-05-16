@@ -1,5 +1,6 @@
 // src/pages/HowItWorks.tsx
 import { Link } from 'react-router-dom'
+import { NavigateButton } from './components/UI/Buttons/NavigateButton'
 
 export default function HowItWorks() {
   return (
@@ -99,11 +100,7 @@ export default function HowItWorks() {
         </div>
 
         <div className="text-center mt-10">
-          <Link to="/get-started">
-            <button className="mt-8 inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white text-base font-semibold rounded hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 transition">
-              Try Now
-            </button>
-          </Link>
+          <NavigateButton to="/get-started">Try Now</NavigateButton>
         </div>
       </main>
     </div>

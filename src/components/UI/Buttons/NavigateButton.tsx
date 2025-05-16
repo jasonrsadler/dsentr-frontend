@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import type { ReactNode } from "react"
+import { Link } from 'react-router-dom'
+import type { ReactNode } from 'react'
 
 interface NavigateButtonProps {
   to: string
@@ -10,7 +10,7 @@ interface NavigateButtonProps {
 export function NavigateButton({
   to,
   children,
-  className = "",
+  className = ''
 }: NavigateButtonProps) {
   return (
     <Link to={to}>

@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/stores/auth'
 import { loginWithEmail, loginWithOAuth } from '@/lib'
-import { OAuthButton } from './components/OAuthButton'
+import { OAuthButton } from '@/components/OAuthButton'
+import { FormButton } from '@/components/UI/Buttons/FormButton'
+import LoginIcon from '@/assets/svg/LoginIcon'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -27,7 +29,7 @@ export default function Login() {
     setError('')
     const res = await loginWithEmail({ email, password, remember })
     if (res.success && res.data?.user) {
-        console.log(res.data)
+      console.log(res.data)
       login(res.data.user)
       navigate('/dashboard')
     } else {
@@ -40,17 +42,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-900 px-4">
       <div className="max-w-md w-full space-y-8 text-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-20 h-20 mx-auto text-indigo-500 dark:text-indigo-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={1.5}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-        </svg>
-
+        <LoginIcon />
         <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
           Login to Dsentr
         </h1>
@@ -103,12 +95,7 @@ export default function Login() {
             <div className="text-red-500 text-sm text-center">{error}</div>
           )}
 
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded"
-          >
-            Log In
-          </button>
+          <FormButton>Login</FormButton>
         </form>
 
         <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-6">

@@ -1,5 +1,5 @@
-import { useEffect, useRef, useCallback } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import { useAuth } from '@/stores/auth'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { NavLinks } from '@/components/NavLinks'
@@ -23,7 +23,6 @@ import { NavigateButton } from './components/UI/Buttons/NavigateButton'
 export default function App() {
   const { user, isLoading, checkAuth } = useAuth()
   const hasCheckedAuth = useRef(false)
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (hasCheckedAuth.current) return
@@ -51,22 +50,30 @@ export default function App() {
 
         {user ? (
           <div className="flex items-center gap-3">
-  <span className="text-sm text-zinc-600 dark:text-zinc-300 leading-none">
-    {user.first_name} {user.last_name}
-  </span>
+            <span className="text-sm text-zinc-600 dark:text-zinc-300 leading-none">
+              {user.first_name} {user.last_name}
+            </span>
 
-  <NavigateButton
-    to="/logout"
-    className="px-3 py-2 text-sm leading-none h-9"
-  >
-    Log out
-  </NavigateButton>
+            <NavigateButton
+              to="/logout"
+              className="px-3 py-2 text-sm leading-none h-9"
+            >
+              Log out
+            </NavigateButton>
 
-  <ThemeToggle />
-</div>
+            <ThemeToggle />
+          </div>
         ) : (
           <div className="hidden md:flex gap-4 items-center">
             <NavLinks />
+
+            <NavigateButton
+              to="/login"
+              className="px-3 py-2 text-sm leading-none h-9"
+            >
+              Log in
+            </NavigateButton>
+
             <ThemeToggle />
           </div>
         )}

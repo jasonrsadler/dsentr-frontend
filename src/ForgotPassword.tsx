@@ -1,29 +1,29 @@
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { FormButton } from "./components/UI/Buttons/FormButton"
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { FormButton } from './components/UI/Buttons/FormButton'
+import ForgotPasswordIcon from './assets/svg/ForgotPasswordIcon'
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState('')
   const [success, setSuccess] = useState(false)
-  const [error, setError] = useState("")
-  const navigate = useNavigate()
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      const res = await fetch("/api/auth/forgot-password", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+      const res = await fetch('/api/auth/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
       })
       if (res.ok) {
         setSuccess(true)
       } else {
         const data = await res.json()
-        setError(data?.error || "Something went wrong")
+        setError(data?.error || 'Something went wrong')
       }
     } catch {
-      setError("Network error")
+      setError('Network error')
     }
   }
 
@@ -31,19 +31,7 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-900 px-4">
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
-          <svg
-            className="mx-auto mb-4 h-16 w-16 text-blue-500 dark:text-blue-400"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+          <ForgotPasswordIcon />
           <h2 className="text-2xl font-bold text-zinc-800 dark:text-zinc-100">
             Forgot Your Password?
           </h2>
@@ -81,18 +69,18 @@ export default function ForgotPasswordPage() {
                 {error}
               </div>
             )}
-            <FormButton>
-                Send Reset Link
-            </FormButton>
+            <FormButton>Send Reset Link</FormButton>
           </form>
         )}
 
         <div className="text-center">
-            <Link to="/login" className="text-sm text-zinc-500 dark:text-zinc-400 hover:underline">
-              Remembered your password? Log in
-            </Link>
+          <Link
+            to="/login"
+            className="text-sm text-zinc-500 dark:text-zinc-400 hover:underline"
+          >
+            Remembered your password? Log in
+          </Link>
         </div>
-         
       </div>
     </div>
   )

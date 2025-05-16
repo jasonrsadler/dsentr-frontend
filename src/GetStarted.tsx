@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { joinWaitlist } from '@/lib/waitlistApi' // adjust path if needed
+import { FormButton } from './components/UI/Buttons/FormButton'
 
 export default function GetStarted() {
   const [submitted, setSubmitted] = useState(false)
@@ -48,12 +49,7 @@ export default function GetStarted() {
                 placeholder="you@example.com"
                 className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded dark:bg-zinc-800 dark:text-white"
               />
-              <button
-                type="submit"
-                className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-500 transition"
-              >
-                Join Waitlist
-              </button>
+              <FormButton>Join Waitlist</FormButton>
             </form>
             {error && (
               <p className="mt-2 text-sm text-red-600 dark:text-red-400">

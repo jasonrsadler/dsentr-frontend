@@ -1,5 +1,6 @@
 // src/NotFound.tsx
 import { Link } from 'react-router-dom'
+import { NavigateButton } from './UI/Buttons/NavigateButton'
 
 export default function NotFound() {
   return (
@@ -35,12 +36,7 @@ export default function NotFound() {
           </Link>
         </div>
       </div>
-
-      <Link to="/">
-        <button className="mt-8 px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 transition">
-          Go home
-        </button>
-      </Link>
+      <NavigateButton to="/">Go home</NavigateButton>
     </div>
   )
 }

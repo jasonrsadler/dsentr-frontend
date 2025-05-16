@@ -5,6 +5,7 @@ import ClockIcon from '@/assets/svg/ClockIcon'
 import ShieldIcon from '@/assets/svg/ShieldIcon'
 import { WorkflowIllustration } from '@/assets/svg/WorkflowIllustration'
 import { signupUser } from '@/lib'
+import { FormButton } from './components/UI/Buttons/FormButton'
 
 function validateName(name: string) {
   return /^[a-zA-Z]{1,50}$/.test(name)
@@ -204,19 +205,16 @@ export default function SignupPage() {
                   </div>
                 ))}
               </div>
-
-              <button
-                type="submit"
+              <FormButton
                 disabled={loading}
-                className={`w-full px-4 py-2 rounded font-semibold transition ${
+                className={`${
                   loading
                     ? 'bg-indigo-400 cursor-not-allowed'
                     : 'bg-indigo-600 hover:bg-indigo-500'
-                } text-white`}
+                }`}
               >
                 {loading ? 'Signing up…' : 'Sign Up'}
-              </button>
-
+              </FormButton>
               {message &&
                 (serverError ? (
                   <p className="mt-2 text-center text-red-600 dark:text-red-400">

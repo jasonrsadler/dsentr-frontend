@@ -5,10 +5,10 @@ type User = {
   first_name: string
   last_name: string
   email: string
-    id: string
-    role: string
-    plan: string
-    companyName: string
+  id: string
+  role: string
+  plan: string
+  companyName: string
 }
 
 type AuthState = {
@@ -28,7 +28,7 @@ export const useAuth = create<AuthState>((set) => ({
   logout: async () => {
     await fetch(`${API_BASE_URL}/api/auth/logout`, {
       method: 'POST',
-      credentials: 'include',
+      credentials: 'include'
     })
     set({ user: null, isLoading: false })
   },
@@ -38,13 +38,13 @@ export const useAuth = create<AuthState>((set) => ({
     try {
       const res = await fetch(`${API_BASE_URL}/api/auth/me`, {
         method: 'GET',
-        credentials: 'include',
+        credentials: 'include'
       })
       if (!res.ok) throw new Error('Not authenticated')
       const data = await res.json()
-      set({user: data?.user, isLoading: false })
+      set({ user: data?.user, isLoading: false })
     } catch {
       set({ user: null, isLoading: false })
     }
-  },
+  }
 }))
