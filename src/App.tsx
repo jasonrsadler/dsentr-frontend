@@ -19,6 +19,7 @@ import ProtectedRoute from '@/components/ProtectedRoute'
 import LogoutHandler from '@/Logout'
 import ForgotPassword from '@/ForgotPassword'
 import { NavigateButton } from './components/UI/Buttons/NavigateButton'
+import ResetPassword from './ResetPassword'
 
 export default function App() {
   const { user, isLoading, checkAuth } = useAuth()
@@ -94,6 +95,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<LogoutHandler />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route
           path="/dashboard"
           element={
