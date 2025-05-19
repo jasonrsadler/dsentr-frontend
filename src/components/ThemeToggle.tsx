@@ -1,6 +1,6 @@
 import { useTheme } from '@/hooks/useTheme'
-import SunIcon from '@/assets/svg/SunIcon'
-import MoonIcon from '@/assets/svg/MoonIcon'
+import SunIcon from '@/assets/svg-components/SunIcon'
+import MoonIcon from '@/assets/svg-components/MoonIcon'
 
 export function ThemeToggle() {
   const { isDark, toggleTheme } = useTheme()

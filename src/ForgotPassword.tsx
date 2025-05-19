@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FormButton } from './components/UI/Buttons/FormButton'
-import ForgotPasswordIcon from './assets/svg/ForgotPasswordIcon'
+import ForgotPasswordIcon from './assets/svg-components/ForgotPasswordIcon'
 import { API_BASE_URL } from './lib'
 
 export default function ForgotPasswordPage() {

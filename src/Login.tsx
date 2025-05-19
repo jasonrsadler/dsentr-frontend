@@ -4,7 +4,8 @@ import { useAuth } from '@/stores/auth'
 import { loginWithEmail, loginWithOAuth } from '@/lib'
 import { OAuthButton } from '@/components/OAuthButton'
 import { FormButton } from '@/components/UI/Buttons/FormButton'
-import LoginIcon from '@/assets/svg/LoginIcon'
+import LoginIcon from '@/assets/svg-components/LoginIcon'
+import GoogleLoginButton from './components/GoogleLoginButton'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -102,10 +103,7 @@ export default function Login() {
           Or continue with
         </div>
         <div className="flex flex-col gap-3">
-          <OAuthButton
-            provider="google"
-            onClick={() => loginWithOAuth('google')}
-          />
+          <GoogleLoginButton className='w-full h-full' />
           <OAuthButton
             provider="github"
             onClick={() => loginWithOAuth('github')}

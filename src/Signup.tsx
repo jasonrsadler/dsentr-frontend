@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import PlugIcon from '@/assets/svg/PlugIcon'
-import ClockIcon from '@/assets/svg/ClockIcon'
-import ShieldIcon from '@/assets/svg/ShieldIcon'
-import { WorkflowIllustration } from '@/assets/svg/WorkflowIllustration'
+import PlugIcon from '@/assets/svg-components/PlugIcon'
+import ClockIcon from '@/assets/svg-components/ClockIcon'
+import ShieldIcon from '@/assets/svg-components/ShieldIcon'
+import { WorkflowIllustration } from '@/assets/svg-components/WorkflowIllustration'
 import { signupUser } from '@/lib'
 import { FormButton } from './components/UI/Buttons/FormButton'
 

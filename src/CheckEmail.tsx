@@ -1,4 +1,4 @@
-import EmailIcon from '@/assets/svg/EmailIcon'
+import EmailIcon from '@/assets/svg-components/EmailIcon'
 
 export default function CheckEmail() {
   return (

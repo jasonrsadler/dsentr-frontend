@@ -1,5 +1,6 @@
 import { useAuth } from '@/stores/auth'
 import { API_BASE_URL } from './config'
+import { getCsrfToken } from './csrfCache'
 
 export async function signupUser(formData: {
   first_name: string
@@ -47,11 +48,13 @@ export async function loginWithEmail({
   const { login } = useAuth.getState() // ✅ access Zustand store outside React
 
   try {
+    const csrfToken = await getCsrfToken()
     email = email.toLocaleLowerCase()
     const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-csrf-token': csrfToken
       },
       body: JSON.stringify({ email, password, remember }),
       credentials: 'include'

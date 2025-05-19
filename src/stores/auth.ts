@@ -1,4 +1,5 @@
 import { API_BASE_URL } from '@/lib'
+import { getCsrfToken } from '@/lib/csrfCache'
 import { create } from 'zustand'
 
 type User = {
@@ -26,9 +27,14 @@ export const useAuth = create<AuthState>((set) => ({
   login: (user) => set({ user, isLoading: false }),
 
   logout: async () => {
+    const csrfToken = await getCsrfToken()
     await fetch(`${API_BASE_URL}/api/auth/logout`, {
       method: 'POST',
-      credentials: 'include'
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-csrf-token': csrfToken
+      },
     })
     set({ user: null, isLoading: false })
   },

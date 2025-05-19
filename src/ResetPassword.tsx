@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FormButton } from './components/UI/Buttons/FormButton'
-import LockIcon from '@/assets/svg/LockIcon'
-import HidePasswordIcon from './assets/svg/HidePasswordIcon'
-import ShowPasswordIcon from './assets/svg/ShowPasswordIcon'
+import LockIcon from '@/assets/svg-components/LockIcon'
+import HidePasswordIcon from './assets/svg-components/HidePasswordIcon'
+import ShowPasswordIcon from './assets/svg-components/ShowPasswordIcon'
 import { API_BASE_URL } from './lib'
 
 const TOKEN_VERIFY_URL = `${API_BASE_URL}/api/auth/verify-reset-token`
