@@ -74,6 +74,12 @@ export default function App() {
             >
               Log in
             </NavigateButton>
+            <NavigateButton
+              to="/signup"
+              className="px-3 py-2 text-sm leading-none h-9"
+            >
+              Sign Up
+            </NavigateButton>
 
             <ThemeToggle />
           </div>

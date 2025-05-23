@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/stores/auth'
-import { loginWithEmail, loginWithOAuth } from '@/lib'
-import { OAuthButton } from '@/components/OAuthButton'
+import { API_BASE_URL, loginWithEmail } from '@/lib'
 import { FormButton } from '@/components/UI/Buttons/FormButton'
 import LoginIcon from '@/assets/svg-components/LoginIcon'
 import GoogleLoginButton from './components/GoogleLoginButton'
+import GithubLoginButton from './components/GithubLoginButton'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -16,14 +16,30 @@ export default function Login() {
 
   const { user, isLoading, login } = useAuth()
 
-  const isAppleSupported = /Mac|iPhone|iPad|iPod/i.test(navigator.userAgent)
-
   // ✅ Redirect if already logged in (once auth check finishes)
   useEffect(() => {
     if (!isLoading && user) {
       navigate('/dashboard', { replace: true })
     }
   }, [user, isLoading, navigate])
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const err = params.get('error')
+    if (err) {
+      setError(decodeURIComponent(err))
+
+      // Remove `error` from the URL without reloading the page
+      const newParams = new URLSearchParams(location.search)
+      newParams.delete('error')
+
+      const newUrl =
+        window.location.pathname +
+        (newParams.toString() ? `?${newParams.toString()}` : '')
+
+      window.history.replaceState(null, '', newUrl)
+    }
+  }, [location.search])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -103,17 +119,21 @@ export default function Login() {
           Or continue with
         </div>
         <div className="flex flex-col gap-3">
-          <GoogleLoginButton className='w-full h-full' />
-          <OAuthButton
-            provider="github"
-            onClick={() => loginWithOAuth('github')}
+          <GoogleLoginButton 
+            className='w-full h-full' 
+            onClick={() => {
+                window.location.href = `${API_BASE_URL}/api/auth/google-login`;
+              }
+            }  
           />
-          {isAppleSupported && (
-            <OAuthButton
-              provider="apple"
-              onClick={() => loginWithOAuth('apple')}
-            />
-          )}
+          <GithubLoginButton
+            className='w-full h-full'
+            onClick={() => {
+                window.location.href = `${API_BASE_URL}/api/auth/github-login`;
+              }
+            }
+            text="Login with GitHub"
+          />
         </div>
       </div>
     </div>

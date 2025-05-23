@@ -24,7 +24,7 @@ export default function LoginWithGoogleImage(props: React.SVGProps<SVGSVGElement
           fontFamily="Arial, sans-serif"
           fontWeight="500"
         >
-          Sign in with Google
+          Sign up with Google
         </text></g>
 <rect x="0.5" y="0.5" width="447" height="41" rx="3.5" stroke="#747775"/>
 <defs>

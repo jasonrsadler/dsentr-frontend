@@ -5,6 +5,7 @@ import LockIcon from '@/assets/svg-components/LockIcon'
 import HidePasswordIcon from './assets/svg-components/HidePasswordIcon'
 import ShowPasswordIcon from './assets/svg-components/ShowPasswordIcon'
 import { API_BASE_URL } from './lib'
+import { getCsrfToken } from './lib/csrfCache'
 
 const TOKEN_VERIFY_URL = `${API_BASE_URL}/api/auth/verify-reset-token`
 const RESET_PASSWORD_URL = `${API_BASE_URL}/api/auth/reset-password`
@@ -85,10 +86,15 @@ export default function ResetPassword() {
 
     setLoading(true)
     try {
+      const csrfToken = await getCsrfToken()
       const res = await fetch(RESET_PASSWORD_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password, token })
+        headers: { 
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken
+        },
+        body: JSON.stringify({ password, token }),
+        credentials: 'include'
       })
       const data = await res.json()
       if (res.ok) {
