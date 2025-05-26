@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FormButton } from './components/UI/Buttons/FormButton'
 import ForgotPasswordIcon from './assets/svg-components/ForgotPasswordIcon'
 import { API_BASE_URL } from './lib'
+import { getCsrfToken } from './lib/csrfCache'
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
@@ -12,10 +13,14 @@ export default function ForgotPasswordPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
+      const csrfToken = await getCsrfToken()
       const res = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+        headers: { 
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken},
+        body: JSON.stringify({ email }),
+        credentials: 'include'
       })
       if (res.ok) {
         setSuccess(true)

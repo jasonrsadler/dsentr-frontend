@@ -13,9 +13,7 @@ const GoogleLoginButton = (props: GoogleLoginButtonProps) => {
   return (
     <button
       type="button"
-      onClick={() => {
-        // Trigger your OAuth flow here
-      }}
+      onClick={onClick}
       className="transition hover:brightness-90 
   dark:hover:brightness-150"
     >

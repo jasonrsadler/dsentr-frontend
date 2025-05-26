@@ -14,10 +14,15 @@ export async function signupUser(formData: {
 }): Promise<{ success: boolean; message: string }> {
   formData.email = formData.email.toLocaleLowerCase()
   try {
+    const csrfToken = await getCsrfToken()
     const res = await fetch(`${API_BASE_URL}/api/auth/signup`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      headers: { 
+        'Content-Type': 'application/json',
+        'x-csrf-token': csrfToken
+      },
+      body: JSON.stringify(formData),
+      credentials: 'include'
     })
 
     const data = await res.json()

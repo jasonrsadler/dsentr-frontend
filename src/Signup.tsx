@@ -4,8 +4,10 @@ import PlugIcon from '@/assets/svg-components/PlugIcon'
 import ClockIcon from '@/assets/svg-components/ClockIcon'
 import ShieldIcon from '@/assets/svg-components/ShieldIcon'
 import { WorkflowIllustration } from '@/assets/svg-components/WorkflowIllustration'
-import { signupUser } from '@/lib'
+import { API_BASE_URL, signupUser } from '@/lib'
 import { FormButton } from './components/UI/Buttons/FormButton'
+import GoogleSignupButton from './components/GoogleSignupButton'
+import GithubLoginButton from './components/GithubLoginButton'
 
 function validateName(name: string) {
   return /^[a-zA-Z]{1,50}$/.test(name)
@@ -145,7 +147,27 @@ export default function SignupPage() {
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4 text-center">
               Build automations with zero code.
             </p>
-
+            <div className="flex flex-col gap-3">
+              <GoogleSignupButton 
+                className='w-full h-full' 
+                onClick={() => {
+                    window.location.href = `${API_BASE_URL}/api/auth/google-login`;
+                  }
+                }  
+              />
+              <GithubLoginButton
+                className='w-full h-full'
+                onClick={() => {
+                  window.location.href = `${API_BASE_URL}/api/auth/github-login`;
+                }}
+              />
+              <div className="relative text-center">
+                <span className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800 px-2 z-10 relative">
+                  or
+                </span>
+                <div className="absolute top-1/2 left-0 w-full h-px bg-zinc-200 dark:bg-zinc-700 z-0" />
+              </div>
+            </div>    
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4 text-center">
                 {[
