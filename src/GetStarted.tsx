@@ -60,14 +60,14 @@ export default function GetStarted() {
         ) : (
           <p className="text-green-600 font-medium text-lg flex items-center justify-center gap-2">
             <CheckIcon className="w-5 h-5" />
-            You’re in! We’ll be in touch soon.
+            You're in! We'll be in touch soon.
           </p>
         )}
       </div>
 
       <p className="text-sm text-zinc-400 dark:text-zinc-500 mt-6 flex items-center justify-center gap-1">
         <ShieldIcon className="w-4 h-4" />
-        We’ll never spam. Just occasional updates.
+        We'll never spam. Just occasional updates.
       </p>
     </main>
   )

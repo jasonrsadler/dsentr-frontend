@@ -29,7 +29,7 @@ export default defineConfig({
       tsconfig: './tsconfig.test.json'
     },
     exclude: [...configDefaults.exclude, 'dist'],
-    setupFiles: './tests/setupTests.ts',
+    setupFiles: './src/tests/setup.ts',
     coverage: {
       reporter: ['text', 'html', 'lcov'],
       reportsDirectory: './coverage',

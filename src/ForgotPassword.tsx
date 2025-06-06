@@ -5,7 +5,7 @@ import ForgotPasswordIcon from './assets/svg-components/ForgotPasswordIcon'
 import { API_BASE_URL } from './lib'
 import { getCsrfToken } from './lib/csrfCache'
 
-export default function ForgotPasswordPage() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
@@ -16,9 +16,10 @@ export default function ForgotPasswordPage() {
       const csrfToken = await getCsrfToken()
       const res = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
-          'x-csrf-token': csrfToken},
+          'x-csrf-token': csrfToken
+        },
         body: JSON.stringify({ email }),
         credentials: 'include'
       })
@@ -42,7 +43,7 @@ export default function ForgotPasswordPage() {
             Forgot Your Password?
           </h2>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            It happens! Just type in your email below and we’ll send you a link
+            It happens! Just type in your email below and we'll send you a link
             to reset your password. No stress, no judgment.
           </p>
         </div>

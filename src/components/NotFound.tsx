@@ -7,12 +7,12 @@ export default function NotFound() {
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
       <h1 className="text-4xl font-bold mb-2">404</h1>
       <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-6">
-        The page you’re looking for doesn’t exist.
+        The page you're looking for doesn't exist.
       </p>
 
       <div className="mb-6">
         <p className="text-md text-zinc-500 dark:text-zinc-300">
-          But don’t worry! Here are some helpful links to get you back on track:
+          But don't worry! Here are some helpful links to get you back on track:
         </p>
 
         <div className="mt-4 space-y-2">

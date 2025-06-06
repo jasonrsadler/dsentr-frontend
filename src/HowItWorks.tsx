@@ -1,5 +1,4 @@
 // src/pages/HowItWorks.tsx
-import { Link } from 'react-router-dom'
 import { NavigateButton } from './components/UI/Buttons/NavigateButton'
 
 export default function HowItWorks() {

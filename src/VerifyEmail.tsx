@@ -47,13 +47,12 @@ export default function VerifyEmail() {
       <div className="max-w-md w-full text-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className={`w-20 h-20 mx-auto mb-6 ${
-            status === 'success'
+          className={`w-20 h-20 mx-auto mb-6 ${status === 'success'
               ? 'text-green-500'
               : status === 'error'
                 ? 'text-red-500'
                 : 'text-indigo-500'
-          }`}
+            }`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
