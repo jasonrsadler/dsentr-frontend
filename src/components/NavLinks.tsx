@@ -14,7 +14,7 @@ export function NavLinks() {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `${navLinkClasses} ${isActive ? 'font-semibold text-primary' : 'text-white'} hover:text-primary transition-all ease-in-out duration-300`
+          `${navLinkClasses({ isActive })} ${isActive ? 'font-semibold text-primary' : 'text-white'} hover:text-primary transition-all ease-in-out duration-300`
         }
       >
         Home
@@ -22,7 +22,7 @@ export function NavLinks() {
       <NavLink
         to="/about"
         className={({ isActive }) =>
-          `${navLinkClasses} ${isActive ? 'font-semibold text-primary' : 'text-white'} hover:text-primary transition-all ease-in-out duration-300`
+          `${navLinkClasses({ isActive })} ${isActive ? 'font-semibold text-primary' : 'text-white'} hover:text-primary transition-all ease-in-out duration-300`
         }
       >
         About
@@ -30,7 +30,7 @@ export function NavLinks() {
       <NavLink
         to="/how-it-works"
         className={({ isActive }) =>
-          `${navLinkClasses} ${isActive ? 'font-semibold text-primary' : 'text-white'} hover:text-primary transition-all ease-in-out duration-300`
+          `${navLinkClasses({ isActive })} ${isActive ? 'font-semibold text-primary' : 'text-white'} hover:text-primary transition-all ease-in-out duration-300`
         }
       >
         How it works

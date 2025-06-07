@@ -1,6 +1,6 @@
-export default function ClockIcon(props: React.SVGProps<SVGSVGElement>) {
+export default function LockIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-     <svg
+    <svg
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"

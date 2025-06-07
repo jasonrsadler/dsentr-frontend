@@ -13,6 +13,7 @@ export default function LogoutHandler() {
 
     logout()
     navigate('/login', { replace: true })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return null

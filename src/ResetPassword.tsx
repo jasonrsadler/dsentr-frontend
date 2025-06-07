@@ -104,7 +104,6 @@ export default function ResetPassword() {
         } else {
           setTimeout(() => navigate('/login'), 2500)
         }
-
       } else {
         setError(data.message || 'Reset failed.')
       }
@@ -127,13 +126,20 @@ export default function ResetPassword() {
         </p>
 
         {tokenValid === null ? (
-          <p className="text-center text-sm text-zinc-500 dark:text-zinc-400">Verifying token...</p>
+          <p className="text-center text-sm text-zinc-500 dark:text-zinc-400">
+            Verifying token...
+          </p>
         ) : tokenValid === false ? (
-          <p className="text-center text-sm text-red-600 dark:text-red-400">{error}</p>
+          <p className="text-center text-sm text-red-600 dark:text-red-400">
+            {error}
+          </p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor='newPasswordTextBox' className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+              <label
+                htmlFor="newPasswordTextBox"
+                className="block text-sm font-medium text-zinc-800 dark:text-zinc-200"
+              >
                 New Password
               </label>
               <div className="relative">
@@ -157,12 +163,13 @@ export default function ResetPassword() {
                 <div className="mt-2">
                   <div className="h-1 rounded bg-zinc-300 dark:bg-zinc-700 overflow-hidden">
                     <div
-                      className={`h-1 transition-all duration-300 ease-in-out ${strength.label === 'Weak'
-                        ? 'bg-red-500 w-1/3'
-                        : strength.label === 'Moderate'
-                          ? 'bg-yellow-500 w-2/3'
-                          : 'bg-green-500 w-full'
-                        }`}
+                      className={`h-1 transition-all duration-300 ease-in-out ${
+                        strength.label === 'Weak'
+                          ? 'bg-red-500 w-1/3'
+                          : strength.label === 'Moderate'
+                            ? 'bg-yellow-500 w-2/3'
+                            : 'bg-green-500 w-full'
+                      }`}
                     />
                   </div>
                   <p className={`mt-1 text-xs ${strength.color}`}>
@@ -173,7 +180,10 @@ export default function ResetPassword() {
             </div>
 
             <div>
-              <label htmlFor='confirmNewPasswordTextbox' className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+              <label
+                htmlFor="confirmNewPasswordTextbox"
+                className="block text-sm font-medium text-zinc-800 dark:text-zinc-200"
+              >
                 Confirm New Password
               </label>
               <div className="relative">
@@ -197,10 +207,11 @@ export default function ResetPassword() {
 
             <FormButton
               disabled={loading}
-              className={`${loading
-                ? 'bg-indigo-400 cursor-not-allowed'
-                : 'bg-indigo-600 hover:bg-indigo-500'
-                } w-full`}
+              className={`${
+                loading
+                  ? 'bg-indigo-400 cursor-not-allowed'
+                  : 'bg-indigo-600 hover:bg-indigo-500'
+              } w-full`}
             >
               {loading ? 'Resetting...' : 'Reset Password'}
             </FormButton>

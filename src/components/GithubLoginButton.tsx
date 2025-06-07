@@ -1,16 +1,13 @@
-import LoginWithGithubImageDark from "@/assets/svg-components/LoginWithGithubImageDark";
-import LoginWithGithubImageLight from "@/assets/svg-components/LoginWithGithubImageLight";
+import LoginWithGithubImageDark from '@/assets/svg-components/LoginWithGithubImageDark'
+import LoginWithGithubImageLight from '@/assets/svg-components/LoginWithGithubImageLight'
 interface GithubLoginButtonProps {
-  onClick?: () => void;
-  className?: string;
-  text?: string;
+  onClick?: () => void
+  className?: string
+  text?: string
 }
 
 const GithubLoginButton = (props: GithubLoginButtonProps) => {
-  const { 
-    onClick, 
-    className 
-  } = props;
+  const { onClick, className } = props
   return (
     <button
       type="button"
@@ -18,18 +15,18 @@ const GithubLoginButton = (props: GithubLoginButtonProps) => {
       className="transition hover:brightness-90 
   dark:hover:brightness-150"
     >
-      <div className='hidden dark:block'>
+      <div className="hidden dark:block">
         <LoginWithGithubImageDark className={className}>
-            {props.text}
+          {props.text}
         </LoginWithGithubImageDark>
       </div>
-      <div className='block dark:hidden'>
+      <div className="block dark:hidden">
         <LoginWithGithubImageLight className={className}>
-            {props.text}
+          {props.text}
         </LoginWithGithubImageLight>
       </div>
     </button>
-  );
-};
+  )
+}
 
-export default GithubLoginButton;
+export default GithubLoginButton

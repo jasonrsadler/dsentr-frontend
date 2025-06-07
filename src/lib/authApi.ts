@@ -17,7 +17,7 @@ export async function signupUser(formData: {
     const csrfToken = await getCsrfToken()
     const res = await fetch(`${API_BASE_URL}/api/auth/signup`, {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         'x-csrf-token': csrfToken
       },

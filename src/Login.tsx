@@ -16,7 +16,6 @@ export default function Login() {
 
   const { user, isLoading, login } = useAuth()
 
-  // ✅ Redirect if already logged in (once auth check finishes)
   useEffect(() => {
     if (!isLoading && user) {
       navigate('/dashboard', { replace: true })
@@ -29,7 +28,6 @@ export default function Login() {
     if (err) {
       setError(decodeURIComponent(err))
 
-      // Remove `error` from the URL without reloading the page
       const newParams = new URLSearchParams(location.search)
       newParams.delete('error')
 
@@ -39,7 +37,7 @@ export default function Login() {
 
       window.history.replaceState(null, '', newUrl)
     }
-  }, [location.search])
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -54,7 +52,7 @@ export default function Login() {
     }
   }
 
-  if (isLoading || user) return null // Prevent flash of login form
+  if (isLoading || user) return null
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-900 px-4">
@@ -66,7 +64,10 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           <div>
-            <label htmlFor="emailField" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            <label
+              htmlFor="emailField"
+              className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
               Email
             </label>
             <input
@@ -79,7 +80,10 @@ export default function Login() {
             />
           </div>
           <div>
-            <label htmlFor='passwordField' className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            <label
+              htmlFor="passwordField"
+              className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
               Password
             </label>
             <input
@@ -111,7 +115,12 @@ export default function Login() {
           </div>
 
           {error && (
-            <div className="text-red-500 text-sm text-center" data-testid="loginError">{error}</div>
+            <div
+              className="text-red-500 text-sm text-center"
+              data-testid="loginError"
+            >
+              {error}
+            </div>
           )}
 
           <FormButton>Login</FormButton>
@@ -122,18 +131,16 @@ export default function Login() {
         </div>
         <div className="flex flex-col gap-3">
           <GoogleLoginButton
-            className='w-full h-full'
+            className="w-full h-full"
             onClick={() => {
-              window.location.href = `${API_BASE_URL}/api/auth/google-login`;
-            }
-            }
+              window.location.href = `${API_BASE_URL}/api/auth/google-login`
+            }}
           />
           <GithubLoginButton
-            className='w-full h-full'
+            className="w-full h-full"
             onClick={() => {
-              window.location.href = `${API_BASE_URL}/api/auth/github-login`;
-            }
-            }
+              window.location.href = `${API_BASE_URL}/api/auth/github-login`
+            }}
             text="Login with GitHub"
           />
         </div>

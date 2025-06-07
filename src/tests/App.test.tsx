@@ -5,52 +5,54 @@ import App from '@/App'
 
 // Mock the auth store
 vi.mock('@/stores/auth', () => ({
-    useAuth: () => ({
-        user: null,
-        isLoading: false,
-        checkAuth: vi.fn(),
-    }),
+  useAuth: () => ({
+    user: null,
+    isLoading: false,
+    checkAuth: vi.fn()
+  })
 }))
 
 // Optionally mock components that don't matter here
 vi.mock('@/components/ProtectedRoute', () => ({
-    default: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  default: ({ children }: { children: React.ReactNode }) => <>{children}</>
 }))
 vi.mock('@/components/DsentrLogo', () => ({
-    DsentrLogo: () => <div data-testid="logo" />,
+  DsentrLogo: () => <div data-testid="logo" />
 }))
 
 describe('App', () => {
-    it('renders header and footer', () => {
-        render(
-            <MemoryRouter initialEntries={['/']}>
-                <App />
-            </MemoryRouter>
-        )
+  it('renders header and footer', () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>
+    )
 
-        expect(screen.getByText('Dsentr')).toBeInTheDocument()
-        expect(screen.getByText(/all rights reserved/i)).toBeInTheDocument()
+    expect(screen.getByText('Dsentr')).toBeInTheDocument()
+    expect(screen.getByText(/all rights reserved/i)).toBeInTheDocument()
+  })
+
+  it('renders About page via route', async () => {
+    render(
+      <MemoryRouter initialEntries={['/about']}>
+        <App />
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { name: /about/i })
+      ).toBeInTheDocument()
     })
+  })
 
-    it('renders About page via route', async () => {
-        render(
-            <MemoryRouter initialEntries={['/about']}>
-                <App />
-            </MemoryRouter>
-        )
+  it('renders NotFound page on invalid route', () => {
+    render(
+      <MemoryRouter initialEntries={['/thispagedoesnotexist']}>
+        <App />
+      </MemoryRouter>
+    )
 
-        await waitFor(() => {
-            expect(screen.getByRole('heading', { name: /about/i })).toBeInTheDocument()
-        })
-    })
-
-    it('renders NotFound page on invalid route', () => {
-        render(
-            <MemoryRouter initialEntries={['/thispagedoesnotexist']}>
-                <App />
-            </MemoryRouter>
-        )
-
-        expect(screen.getByText(/404/i)).toBeInTheDocument()
-    })
+    expect(screen.getByText(/404/i)).toBeInTheDocument()
+  })
 })

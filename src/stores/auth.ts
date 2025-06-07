@@ -15,6 +15,7 @@ type User = {
 type AuthState = {
   user: User | null
   isLoading: boolean
+  // eslint-disable-next-line no-unused-vars
   login: (user: User) => void
   logout: () => void
   checkAuth: () => Promise<void>
@@ -34,7 +35,7 @@ export const useAuth = create<AuthState>((set) => ({
       headers: {
         'Content-Type': 'application/json',
         'x-csrf-token': csrfToken
-      },
+      }
     })
     set({ user: null, isLoading: false })
   },

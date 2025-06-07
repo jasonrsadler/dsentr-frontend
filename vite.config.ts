@@ -50,8 +50,12 @@ export default defineConfig({
   },
   server: {
     https: {
-      key: fs.readFileSync(path.join(__dirname, '../../mkcert', 'localhost-key.pem')),
-      cert: fs.readFileSync(path.join(__dirname, '../../mkcert', 'localhost.pem'))
+      key: fs.readFileSync(
+        path.join(__dirname, '../../mkcert', 'localhost-key.pem')
+      ),
+      cert: fs.readFileSync(
+        path.join(__dirname, '../../mkcert', 'localhost.pem')
+      )
     }
   }
 })
